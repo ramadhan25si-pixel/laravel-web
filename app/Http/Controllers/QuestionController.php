@@ -41,6 +41,9 @@ class QuestionController extends Controller
             'nama.required'=>'nama tidak boleh kosong',
             'email.email' => 'email tidak valid'
         ]);
+
+        return redirect()->route('home-question-respon')->with($data);
+
     }
     /**
      * Display the specified resource.

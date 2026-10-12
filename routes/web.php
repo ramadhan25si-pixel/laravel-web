@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\controllers\QuestionController;
 use App\Http\controllers\HomeController;
+use App\http\Controllers\DashboardController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -35,3 +36,9 @@ Route::get('/home',[HomeController::class,'index']);
 
 Route::post('question/store', [QuestionController::class, 'store'])
 		->name('question.store');
+
+route::get('/home-question-respon', function() {
+    return view('home-question-respon');
+})->name('home-question-respon');
+
+route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
