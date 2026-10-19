@@ -45,3 +45,4 @@ route::get('/home-question-respon', function() {
 route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 route::resource('pelanggan', PelangganController::class);
+
