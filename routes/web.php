@@ -6,6 +6,7 @@ use App\Http\controllers\QuestionController;
 use App\Http\controllers\HomeController;
 use App\http\Controllers\DashboardController;
 use App\http\Controllers\PelangganController;
+use App\http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -46,3 +47,4 @@ route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard'
 
 route::resource('pelanggan', PelangganController::class);
 
+route::resource('user', UserController::class);
