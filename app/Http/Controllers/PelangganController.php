@@ -9,11 +9,26 @@ class PelangganController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $data['dataPelanggan'] = Pelanggan::all();
-        return view('admin.pelanggan.index', $data);
-    }
+    public function index(Request $request)
+{
+    $filterableColumns = ['gender'];
+    $searchableColumns = ['first_name', 'last_name', 'email'];
+
+
+    $data['dataPelanggan'] = Pelanggan::filter($request, $filterableColumns)
+        ->when($request->search, function ($query) use ($request, $searchableColumns) {
+            $query->where(function ($q) use ($request, $searchableColumns) {
+                foreach ($searchableColumns as $column) {
+                    $q->orWhere($column, 'LIKE', '%' . $request->search . '%');
+                }
+            });
+        })
+        ->paginate(10)
+        ->withQueryString();
+
+
+    return view('admin.pelanggan.index', $data);
+}
 
     /**
      * Show the form for creating a new resource.
